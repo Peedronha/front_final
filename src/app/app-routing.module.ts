@@ -1,10 +1,18 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {PageNotFoundComponent} from './parts/page-not-found/page-not-found.component';
+import {WelcomeComponent} from './parts/welcome/welcome.component';
 
-const routes: Routes = [];
+const appRoutes: Routes = [
+  {path: 'welcome', component: WelcomeComponent},
+  {path: '', component: WelcomeComponent},
+  {path: '**', component: PageNotFoundComponent}
+];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(appRoutes, { relativeLinkResolution: 'corrected' })],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+
+export class AppRoutingModule {
+}
