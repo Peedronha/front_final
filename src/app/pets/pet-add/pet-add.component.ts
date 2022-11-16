@@ -18,8 +18,10 @@ export class PetAddComponent implements OnInit {
   pet: Pet;
   @Input() currentType: PetType;
   currentOwner: Owner;
+
   petTypes: PetType[];
   owners: Owner[];
+
   addedSuccess = false;
   errorMessage: string ='';
 
@@ -32,31 +34,44 @@ export class PetAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    /*this.petTypeService.getPetTypes().subscribe(
-      pettypes => this.petTypes = pettypes,
+    this.petTypeService.getPetTypes().subscribe(
+      petTypes => this.petTypes = petTypes,
       error => this.errorMessage = error as any);
 
-    //const ownerId = this.route.snapshot.params['id'];
       this.ownerService.getOwners().subscribe(
         response => this.owners = response,
-        error => this.errorMessage = error as any);*/
+        error => this.errorMessage = error as any);
   }
   onSubmit(pet: Pet) {
-    pet.id;
-    //pet.owner = this.currentOwner;
     // format output from datepicker to short string yyyy-mm-dd format (rfc3339)
     pet.birthDate = moment(pet.birthDate).format('YYYY-MM-DD');
-    /*this.petService.addPet(pet).subscribe(
+
+    this.ownerService.getOwnerById(pet.owner.id).subscribe(
+      newOwner => {
+        this.currentOwner =  newOwner
+      },
+      error => this.errorMessage = error as any);
+
+    this.petService.addPet(pet).subscribe(
       newPet => {
+
+        alert(newPet)
+
+        alert(pet.owner.id + "---" + this.currentOwner.id)
+
+        this.ownerService.updateOwnerPet(newPet.id, pet.owner.id, this.currentOwner).subscribe(
+          response => {
+            this.currentOwner = response;
+          },
+            error => this.errorMessage = error as any);
         this.pet = newPet;
         this.addedSuccess = true;
-        this.gotoOwnerDetail();
+        //this.gotoOwnerDetail();
       },
-      error => this.errorMessage = error as any);*/
+      error => this.errorMessage = error as any);
   }
 
   gotoOwnerDetail() {
-    //this.router.navigate(['/owners', this.currentOwner.id]);
+    this.router.navigate(['/owners', this.currentOwner.id]);
   }
-
 }

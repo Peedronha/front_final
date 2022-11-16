@@ -44,6 +44,7 @@ export class PetEditComponent implements OnInit {
         this.pet = pet;
         this.ownerService.getOwnerByPetId(this.pet.id).subscribe(
           response => {
+            console.log(response);
             this.currentOwner = response;
           });
         this.currentType = this.pet.type;

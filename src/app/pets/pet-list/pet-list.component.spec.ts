@@ -41,12 +41,7 @@ describe('PetListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(PetListComponent);
     component = fixture.componentInstance;
-    inputPet = {
-      id: 1,
-      name: 'Leo',
-      birthDate: '2010-09-07',
-      type: { id: 1, name: 'cat' },
-    };
+
     component.pet = inputPet;
     petService = fixture.debugElement.injector.get(PetService);
     spy = spyOn(petService, 'deletePet').and.returnValue(of(1));

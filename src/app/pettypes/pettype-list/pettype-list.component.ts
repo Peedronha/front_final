@@ -41,7 +41,7 @@ export class PettypeListComponent implements OnInit {
   }
 
   showAddPettypeComponent() {
-    this.isInsert = !this.isInsert;
+    this.router.navigate(['/pettypes/add'])
   }
 
   showEditPettypeComponent(updatedPetType: PetType) {

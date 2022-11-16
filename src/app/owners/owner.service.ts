@@ -63,4 +63,8 @@ export class OwnerService {
       .get<Owner>(environment.REST_API_URL + 'pets')
       .pipe(catchError(this.handlerError('getbyPet', {} as Owner)));
   }
+  updateOwnerPet(petId:number, ownerId: number, owner: Owner){
+    return this.http.put<Owner>(this.entityUrl + '/' + ownerId + '/' + petId, owner)
+      .pipe(catchError((this.handlerError('updateOwnerPet', {} as Owner))));
+  }
 }

@@ -34,7 +34,7 @@ export class PetService {
   addPet(pet: Pet): Observable<Pet> {
     return this.http.post<Pet>(this.entityUrl, pet)
       .pipe(
-        catchError(this.handlerError('addPet', pet))
+        catchError(this.handlerError('savePet', pet))
       );
   }
 

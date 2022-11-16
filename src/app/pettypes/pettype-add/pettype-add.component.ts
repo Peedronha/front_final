@@ -29,5 +29,4 @@ export class PettypeAddComponent implements OnInit {
       error => this.errorMessage = error as any
     );
   }
-
 }
