@@ -1,6 +1,6 @@
 import {Component, Inject, OnInit} from '@angular/core';
 import {Specialty} from '../../specialties/specialty';
-import {SpecialtyService} from 'src/app/specialties/specialty.service';
+import {SpecialtyService} from "../../specialties/specialty.service";
 import {Vet} from '../vet';
 import {Router} from '@angular/router';
 import {VetService} from '../vet.service';
