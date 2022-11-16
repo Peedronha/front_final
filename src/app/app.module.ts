@@ -6,7 +6,7 @@ import {AppComponent} from './app.component';
 import {AppRoutingModule} from './app-routing.module';
 import {OwnersModule} from './owners/owners.module';
 import {PetsModule} from './pets/pets.module';
-import {VisitsModule} from './visits/visits.module';
+import {AppointmentModule} from './appointment/appointment.module';
 import {PetTypesModule} from './pettypes/pettypes.module';
 import {VetsModule} from './vets/vets.module';
 import {PartsModule} from './parts/parts.module';
@@ -25,7 +25,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
     HttpClientModule,
     OwnersModule,
     PetsModule,
-    VisitsModule,
+    AppointmentModule,
     PetTypesModule,
     VetsModule,
     SpecialtiesModule,

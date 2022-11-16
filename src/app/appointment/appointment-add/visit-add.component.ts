@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Visit} from '../visit';
-import {VisitService} from '../visit.service';
+import {Appointment} from '../appointment';
+import {AppointmentService} from '../appointment.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {PetService} from '../../pets/pet.service';
 import {Pet} from '../../pets/pet';
@@ -9,6 +9,7 @@ import {Owner} from '../../owners/owner';
 
 import * as moment from 'moment';
 import {OwnerService} from '../../owners/owner.service';
+import {visit} from "@angular/compiler-cli/src/ngtsc/util/src/visitor";
 
 @Component({
   selector: 'app-visit-add',
@@ -17,19 +18,19 @@ import {OwnerService} from '../../owners/owner.service';
 })
 export class VisitAddComponent implements OnInit {
 
-  visit: Visit;
+  visit: Appointment;
   currentPet: Pet;
   currentOwner: Owner;
   currentPetType: PetType;
   addedSuccess = false;
   errorMessage: string = '';
 
-  constructor(private visitService: VisitService,
+  constructor(private visitService: AppointmentService,
               private petService: PetService,
               private ownerService: OwnerService,
               private router: Router,
               private route: ActivatedRoute) {
-    this.visit = {} as Visit;
+    this.visit = {} as Appointment;
     this.currentPet = {} as Pet;
     this.currentOwner = {} as Owner;
     this.currentPetType = {} as PetType;
@@ -37,14 +38,12 @@ export class VisitAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    console.log(this.route.parent);
     const petId = this.route.snapshot.params['id'];
     this.petService.getPetById(petId).subscribe(
       pet => {
         this.currentPet = pet;
-        this.visit.pet = this.currentPet;
         this.currentPetType = this.currentPet.type;
-        this.ownerService.getOwnerById(pet.ownerId).subscribe(
+        this.ownerService.getOwnerById(this.visit.owner).subscribe(
           owner => {
             this.currentOwner = owner;
           }
@@ -53,7 +52,7 @@ export class VisitAddComponent implements OnInit {
       error => this.errorMessage = error as any);
   }
 
-  onSubmit(visit: Visit) {
+  onSubmit(visit: Appointment) {
     visit.id;
     const that = this;
 

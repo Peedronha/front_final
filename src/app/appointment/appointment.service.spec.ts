@@ -1,5 +1,5 @@
 import { inject, TestBed, waitForAsync } from '@angular/core/testing';
-import {VisitService} from './visit.service';
+import {AppointmentService} from './appointment.service';
 import {HttpClient} from '@angular/common/http';
 import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
 
@@ -8,11 +8,11 @@ describe('VisitService', () => {
     TestBed.configureTestingModule({
       // Import the HttpClient mocking services
       imports: [HttpClientTestingModule],
-      providers: [VisitService]
+      providers: [AppointmentService]
     });
   });
 
-  it('should ...', waitForAsync(inject([HttpTestingController], (visitService: VisitService, http: HttpClient) => {
+  it('should ...', waitForAsync(inject([HttpTestingController], (visitService: AppointmentService, http: HttpClient) => {
     expect(visitService).toBeTruthy();
   })));
 });

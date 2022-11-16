@@ -31,7 +31,7 @@
           <th>Address</th>
           <th>City</th>
           <th>Telephone</th>
-          <th>Pets</th>
+          <th>Pet</th>
         </tr>
         </thead>
 
@@ -43,10 +43,8 @@
           <td>{{ owner.city }}</td>
           <td>{{ owner.telephone }}</td>
           <td>
-        <tr *ngFor="let pet of owner.pets">
-          {{ pet.name }}
-        </tr>
-        </td>
+              {{ owner.pet}}
+          </td>
         </tr>
         </tbody>
       </table>

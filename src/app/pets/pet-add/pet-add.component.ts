@@ -19,6 +19,7 @@ export class PetAddComponent implements OnInit {
   @Input() currentType: PetType;
   currentOwner: Owner;
   petTypes: PetType[];
+  owners: Owner[];
   addedSuccess = false;
   errorMessage: string ='';
 
@@ -31,34 +32,31 @@ export class PetAddComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.petTypeService.getPetTypes().subscribe(
+    /*this.petTypeService.getPetTypes().subscribe(
       pettypes => this.petTypes = pettypes,
       error => this.errorMessage = error as any);
 
-    const ownerId = this.route.snapshot.params['id'];
-    this.ownerService.getOwnerById(ownerId).subscribe(
-      response => {
-        this.currentOwner = response;
-      },
-      error => this.errorMessage = error as any);
+    //const ownerId = this.route.snapshot.params['id'];
+      this.ownerService.getOwners().subscribe(
+        response => this.owners = response,
+        error => this.errorMessage = error as any);*/
   }
-
   onSubmit(pet: Pet) {
-    pet.id = 0;
-    pet.owner = this.currentOwner;
+    pet.id;
+    //pet.owner = this.currentOwner;
     // format output from datepicker to short string yyyy-mm-dd format (rfc3339)
     pet.birthDate = moment(pet.birthDate).format('YYYY-MM-DD');
-    this.petService.addPet(pet).subscribe(
+    /*this.petService.addPet(pet).subscribe(
       newPet => {
         this.pet = newPet;
         this.addedSuccess = true;
         this.gotoOwnerDetail();
       },
-      error => this.errorMessage = error as any);
+      error => this.errorMessage = error as any);*/
   }
 
   gotoOwnerDetail() {
-    this.router.navigate(['/owners', this.currentOwner.id]);
+    //this.router.navigate(['/owners', this.currentOwner.id]);
   }
 
 }

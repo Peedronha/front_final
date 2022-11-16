@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {Visit} from '../visit';
+import {Appointment} from '../appointment';
 import {Pet} from '../../pets/pet';
 import {Owner} from '../../owners/owner';
 import {PetType} from '../../pettypes/pettype';
-import {VisitService} from '../visit.service';
+import {AppointmentService} from '../appointment.service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 import * as moment from 'moment';
@@ -16,19 +16,19 @@ import {PetService} from '../../pets/pet.service';
   styleUrls: ['./visit-edit.component.css']
 })
 export class VisitEditComponent implements OnInit {
-  visit: Visit;
+  visit: Appointment;
   currentPet: Pet;
   currentOwner: Owner;
   currentPetType: PetType;
   updateSuccess = false;
   errorMessage: string = '';
 
-  constructor(private visitService: VisitService,
+  constructor(private visitService: AppointmentService,
               private petService: PetService,
               private ownerService: OwnerService,
               private route: ActivatedRoute,
               private router: Router) {
-    this.visit = {} as Visit;
+    this.visit = {} as Appointment;
     this.currentPet = {} as Pet;
     this.currentOwner = {} as Owner;
     this.currentPetType = {} as PetType;
@@ -39,11 +39,11 @@ export class VisitEditComponent implements OnInit {
     this.visitService.getVisitById(visitId).subscribe(
       visit => {
         this.visit = visit;
-        this.petService.getPetById(visit.petId).subscribe(
+        this.petService.getPetById(visit.pet).subscribe(
           pet => {
             this.currentPet = pet;
             this.currentPetType = pet.type;
-            this.ownerService.getOwnerById(pet.ownerId).subscribe(
+            this.ownerService.getOwnerByPetId(pet.id).subscribe(
               owner => {
                 this.currentOwner = owner;
               }
@@ -54,8 +54,8 @@ export class VisitEditComponent implements OnInit {
       error => this.errorMessage = error as any);
   }
 
-  onSubmit(visit: Visit) {
-    visit.pet = this.currentPet;
+  onSubmit(visit: Appointment) {
+    visit.pet = this.currentPet.id;
 
     // format output from datepicker to short string yyyy-mm-dd format (rfc3339)
     visit.date = moment(visit.date).format('YYYY-MM-DD');

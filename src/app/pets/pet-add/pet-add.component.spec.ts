@@ -65,17 +65,6 @@ describe('PetAddComponent', () => {
       name: 'Leo',
       birthDate: '2010-09-07',
       type: {id: 1, name: 'cat'},
-      ownerId: 1,
-      owner: {
-        id: 1,
-        firstName: 'George',
-        lastName: 'Franklin',
-        address: '110 W. Liberty St.',
-        city: 'Madison',
-        telephone: '6085551023',
-        pets: []
-      },
-      visits: []
     };
     petService = fixture.debugElement.injector.get(PetService);
     spy = spyOn(petService, 'getPetById')

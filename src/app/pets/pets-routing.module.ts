@@ -1,7 +1,7 @@
 import {RouterModule, Routes} from '@angular/router';
 import {PetListComponent} from './pet-list/pet-list.component';
 import {NgModule} from '@angular/core';
-import {VisitAddComponent} from '../visits/visit-add/visit-add.component';
+import {VisitAddComponent} from '../appointment/appointment-add/visit-add.component';
 import {PetEditComponent} from './pet-edit/pet-edit.component';
 import {PetAddComponent} from './pet-add/pet-add.component';
 

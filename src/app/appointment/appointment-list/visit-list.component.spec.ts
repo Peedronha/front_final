@@ -3,10 +3,10 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import {VisitListComponent} from './visit-list.component';
 import {FormsModule} from '@angular/forms';
-import {VisitService} from '../visit.service';
+import {AppointmentService} from '../appointment.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActivatedRouteStub, RouterStub} from '../../testing/router-stubs';
-import {Visit} from '../visit';
+import {Appointment} from '../appointment';
 import {Pet} from '../../pets/pet';
 import {Observable, of} from 'rxjs';
 import Spy = jasmine.Spy;
@@ -20,8 +20,8 @@ class VisitServiceStub {
 describe('VisitListComponent', () => {
   let component: VisitListComponent;
   let fixture: ComponentFixture<VisitListComponent>;
-  let visitService: VisitService;
-  let testVisits: Visit[];
+  let visitService: AppointmentService;
+  let testVisits: Appointment[];
   let testPet: Pet;
   let spy: Spy;
   let responseStatus: number;
@@ -32,7 +32,7 @@ describe('VisitListComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [FormsModule],
       providers: [
-        {provide: VisitService, useClass: VisitServiceStub},
+        {provide: AppointmentService, useClass: VisitServiceStub},
         {provide: Router, useClass: RouterStub},
         {provide: ActivatedRoute, useClass: ActivatedRouteStub}
       ]
@@ -48,27 +48,16 @@ describe('VisitListComponent', () => {
       name: 'Leo',
       birthDate: '2010-09-07',
       type: {id: 1, name: 'cat'},
-      ownerId: 1,
-      owner: {
-        id: 1,
-        firstName: 'George',
-        lastName: 'Franklin',
-        address: '110 W. Liberty St.',
-        city: 'Madison',
-        telephone: '6085551023',
-        pets: []
-      },
-      visits: []
     };
     testVisits =  [{
       id: 1,
       date: '2016-09-07',
       description: '',
-      pet: testPet,
-      petId: 1
+      pet: 0,
+      owner: 1
     }];
 
-    visitService = fixture.debugElement.injector.get(VisitService);
+    visitService = fixture.debugElement.injector.get(AppointmentService);
     responseStatus = 204; // success delete return NO_CONTENT
     component.visits = testVisits;
 

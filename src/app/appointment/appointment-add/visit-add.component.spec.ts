@@ -3,7 +3,7 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import {VisitAddComponent} from './visit-add.component';
 import {FormsModule} from '@angular/forms';
-import {VisitService} from '../visit.service';
+import {AppointmentService} from '../appointment.service';
 import {PetService} from '../../pets/pet.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActivatedRouteStub, RouterStub} from '../../testing/router-stubs';
@@ -33,7 +33,7 @@ describe('VisitAddComponent', () => {
   let component: VisitAddComponent;
   let fixture: ComponentFixture<VisitAddComponent>;
   let petService: PetService;
-  let visitService: VisitService;
+  let visitService: AppointmentService;
   let testPet: Pet;
   let spy: Spy;
 
@@ -44,7 +44,7 @@ describe('VisitAddComponent', () => {
       imports: [FormsModule, MatDatepickerModule, MatMomentDateModule],
       providers: [
         {provide: PetService, useClass: PetServiceStub},
-        {provide: VisitService, useClass: VisitServiceStub},
+        {provide: AppointmentService, useClass: VisitServiceStub},
         {provide: OwnerService, useClass: OwnerServiceStub},
         {provide: Router, useClass: RouterStub},
         {provide: ActivatedRoute, useClass: ActivatedRouteStub}
@@ -61,20 +61,9 @@ describe('VisitAddComponent', () => {
       name: 'Leo',
       birthDate: '2010-09-07',
       type: {id: 1, name: 'cat'},
-      ownerId: 1,
-      owner: {
-        id: 1,
-        firstName: 'George',
-        lastName: 'Franklin',
-        address: '110 W. Liberty St.',
-        city: 'Madison',
-        telephone: '6085551023',
-        pets: []
-      },
-      visits: []
     };
     petService = fixture.debugElement.injector.get(PetService);
-    visitService = fixture.debugElement.injector.get(VisitService);
+    visitService = fixture.debugElement.injector.get(AppointmentService);
     spy = spyOn(petService, 'addPet')
       .and.returnValue(of(testPet));
 

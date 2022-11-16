@@ -1,4 +1,41 @@
-<table [hidden]="deleteSuccess" class="table table-striped">
+<div class="container-fluid">
+  <div class="container xd-container">
+    <h2>Pets</h2>
+    <table id="pet" class="table table-striped">
+      <thead>
+      <tr>
+        <th>Name</th>
+        <th>Birthdate</th>
+        <th>Visits</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr  *ngFor="let pet of pets; let element_id=index">
+        <td>
+          <input [id]=element_id [readonly]="true" type="text" class="form-control" [(ngModel)]="pet.name" name="pet_name" />
+        </td>
+        <td>
+          <input [id]=element_id [readonly]="true" type="text" class="form-control" [(ngModel)]="pet.birthDate" name="pet_birth" />
+        </td>
+        <td>
+          <button class="btn btn-default" (click)="editPet(pet)">Edit Pet</button>
+          <button class="btn btn-default" (click)="deletePet(pet)">Delete Pet</button>
+          <button class="btn btn-default" (click)="addVisit(pet)">Add Appointment</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+    <div>
+      <button class="btn btn-default" (click)="gotoHome()">Home</button>
+      <button class="btn btn-default" (click)="addPet()">Add Pet</button>
+    </div>
+  </div>
+</div>
+
+
+
+<!--<table [hidden]="deleteSuccess" class="table table-striped">
   <tr>
     <td valign="top">
       <dl class="dl-horizontal">
@@ -7,10 +44,10 @@
         <dt>Birth Date</dt>
         <dd>{{ pet.birthDate }}</dd>
         <dt>Type</dt>
-        <dd *ngIf="!deleteSuccess">{{ pet.type.name }}</dd>
+        <dd *ngIf="!deleteSuccess">{{ pet.type.name}}</dd>
         <button class="btn btn-default" (click)="editPet(pet)">Edit Pet</button>
         <button class="btn btn-default" (click)="deletePet(pet)">Delete Pet</button>
-        <button class="btn btn-default" (click)="addVisit(pet)">Add Visit</button>
+        <button class="btn btn-default" (click)="addVisit(pet)">Add Appointment</button>
 
       </dl>
     </td>
@@ -19,4 +56,4 @@
     </td>
   </tr>
 
-</table>
+</table>-->

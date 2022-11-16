@@ -1,13 +1,18 @@
 import {Owner} from '../owners/owner';
-import {Visit} from '../visits/visit';
+import {Appointment} from '../appointment/appointment';
 import {PetType} from '../pettypes/pettype';
 
 export interface Pet {
   id: number;
-  ownerId: number;
   name: string;
   birthDate: string;
   type: PetType;
+}
+
+export interface Pet {
   owner: Owner;
-  visits: Visit[];
+  id: number;
+  name: string;
+  birthDate: string;
+  type: PetType;
 }

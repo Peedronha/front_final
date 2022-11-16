@@ -5,6 +5,7 @@ import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { HandleError, HttpErrorHandler } from '../error.service';
+import {Pet} from "../pets/pet";
 
 @Injectable()
 export class OwnerService {
@@ -12,11 +13,8 @@ export class OwnerService {
 
   private readonly handlerError: HandleError;
 
-  constructor(
-    private http: HttpClient,
-    private httpErrorHandler: HttpErrorHandler
-  ) {
-    this.handlerError = httpErrorHandler.createHandleError('OwnerService');
+  constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandler) {
+    this.handlerError = httpErrorHandler.createHandleError('ErrorService');
   }
 
   getOwners(): Observable<Owner[]> {
@@ -58,5 +56,11 @@ export class OwnerService {
     return this.http
       .get<Owner[]>(url)
       .pipe(catchError(this.handlerError('searchOwners', [])));
+  }
+
+  getOwnerByPetId(id: number) {
+    return this.http
+      .get<Owner>(environment.REST_API_URL + 'pets')
+      .pipe(catchError(this.handlerError('getbyPet', {} as Owner)));
   }
 }

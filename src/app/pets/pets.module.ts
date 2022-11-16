@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {PetsRoutingModule} from './pets-routing.module';
 import {PetListComponent} from './pet-list/pet-list.component';
 import {PetService} from './pet.service';
-import {VisitsModule} from '../visits/visits.module';
+import {AppointmentModule} from '../appointment/appointment.module';
 import {PetEditComponent} from './pet-edit/pet-edit.component';
 import {FormsModule} from '@angular/forms';
 import {PetAddComponent} from './pet-add/pet-add.component';
@@ -32,7 +32,7 @@ export const MY_DATE_FORMATS = {
     MatDatepickerModule,
     MatMomentDateModule,
     PetsRoutingModule,
-    VisitsModule
+    AppointmentModule
   ],
   declarations: [
     PetListComponent,

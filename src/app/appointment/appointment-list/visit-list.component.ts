@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Visit} from '../visit';
-import {VisitService} from '../visit.service';
+import {Appointment} from '../appointment';
+import {AppointmentService} from '../appointment.service';
 import {Router} from '@angular/router';
 
 @Component({
@@ -10,23 +10,23 @@ import {Router} from '@angular/router';
 })
 export class VisitListComponent implements OnInit {
 
-  @Input() visits: Visit[];
+  @Input() visits: Appointment[];
   responseStatus: number = 0;
   noVisits = false;
   errorMessage: string = '';
 
-  constructor(private router: Router, private visitService: VisitService) {
+  constructor(private router: Router, private visitService: AppointmentService) {
     this.visits = [];
   }
 
   ngOnInit() {
   }
 
-  editVisit(visit: Visit) {
+  editVisit(visit: Appointment) {
     this.router.navigate(['/visits', visit.id, 'edit']);
   }
 
-  deleteVisit(visit: Visit) {
+  deleteVisit(visit: Appointment) {
     this.visitService.deleteVisit(visit.id.toString()).subscribe(
       response => {
         this.responseStatus = response;
@@ -39,4 +39,11 @@ export class VisitListComponent implements OnInit {
       error => this.errorMessage = error as any);
   }
 
+  gotoHome() {
+    this.router.navigate(['/welcome']);
+  }
+
+  addVisit() {
+    this.router.navigate(['/visits/add']);
+  }
 }

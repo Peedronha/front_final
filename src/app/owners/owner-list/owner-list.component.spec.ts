@@ -43,7 +43,7 @@ describe('OwnerListComponent', () => {
     address: '110 W. Liberty St.',
     city: 'Madison',
     telephone: '6085551023',
-    pets: []
+    pet: 0
   };
   let testOwners: Owner[];
 
@@ -74,15 +74,7 @@ describe('OwnerListComponent', () => {
       address: '110 W. Liberty St.',
       city: 'Madison',
       telephone: '6085551023',
-      pets: [{
-        id: 1,
-        name: 'Leo',
-        birthDate: '2010-09-07',
-        type: {id: 1, name: 'cat'},
-        ownerId: 1,
-        owner: {} as Owner,
-        visits: []
-      }]
+      pet: 0
     }];
 
     fixture = TestBed.createComponent(OwnerListComponent);

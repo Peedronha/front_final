@@ -3,10 +3,10 @@ import {CUSTOM_ELEMENTS_SCHEMA} from '@angular/core';
 
 import {VisitEditComponent} from './visit-edit.component';
 import {FormsModule} from '@angular/forms';
-import {VisitService} from '../visit.service';
+import {AppointmentService} from '../appointment.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ActivatedRouteStub, RouterStub} from '../../testing/router-stubs';
-import {Visit} from '../visit';
+import {Appointment} from '../appointment';
 import {Observable, of} from 'rxjs';
 import {Pet} from '../../pets/pet';
 import {MatMomentDateModule} from '@angular/material-moment-adapter';
@@ -16,7 +16,7 @@ import {OwnerService} from '../../owners/owner.service';
 import {PetService} from '../../pets/pet.service';
 
 class VisitServiceStub {
-  getVisitById(visitId: string): Observable<Visit> {
+  getVisitById(visitId: string): Observable<Appointment> {
     return of();
   }
 }
@@ -33,8 +33,8 @@ class PetServiceStub {
 describe('VisitEditComponent', () => {
   let component: VisitEditComponent;
   let fixture: ComponentFixture<VisitEditComponent>;
-  let visitService: VisitService;
-  let testVisit: Visit;
+  let visitService: AppointmentService;
+  let testVisit: Appointment;
   let testPet: Pet;
   let spy: Spy;
 
@@ -44,7 +44,7 @@ describe('VisitEditComponent', () => {
       schemas: [CUSTOM_ELEMENTS_SCHEMA],
       imports: [FormsModule, MatDatepickerModule, MatMomentDateModule],
       providers: [
-        {provide: VisitService, useClass: VisitServiceStub},
+        {provide: AppointmentService, useClass: VisitServiceStub},
         {provide: OwnerService, useClass: OwnerServiceStub},
         {provide: PetService, useClass: PetServiceStub},
         {provide: Router, useClass: RouterStub},
@@ -59,30 +59,19 @@ describe('VisitEditComponent', () => {
     component = fixture.componentInstance;
     testPet = {
       id: 1,
-      ownerId: 1,
       name: 'Leo',
       birthDate: '2010-09-07',
       type: {id: 1, name: 'cat'},
-      owner: {
-        id: 1,
-        firstName: 'George',
-        lastName: 'Franklin',
-        address: '110 W. Liberty St.',
-        city: 'Madison',
-        telephone: '6085551023',
-        pets: []
-      },
-      visits: []
     };
     testVisit = {
       id: 1,
       date: '2016-09-07',
       description: '',
-      pet: testPet,
-      petId: 1
+      owner: 1,
+      pet: 1
     };
 
-    visitService = fixture.debugElement.injector.get(VisitService);
+    visitService = fixture.debugElement.injector.get(AppointmentService);
     spy = spyOn(visitService, 'getVisitById')
       .and.returnValue(of(testVisit));
 

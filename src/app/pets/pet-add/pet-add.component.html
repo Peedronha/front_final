@@ -11,8 +11,19 @@
       <div class="form-group">
         <label for="owner" class="col-sm-2 control-label">Owner</label>
         <div class="col-sm-10">
-          <input id="owner_name" name="owner_name" class="form-control" type="text"
-                 value="{{ currentOwner.firstName }} {{ currentOwner.lastName }}" readonly/>
+          <!--<input id="owner_name" name="owner_name" class="form-control" type="text"
+                 value="{{ currentOwner.firstName }} {{ currentOwner.lastName }}" readonly/>-->
+          <select id="owner_name" name="owner_name" class="form-control" required [(ngModel)]="pet.owner" #owner="ngModel">
+            <option *ngFor="let owner of owners"
+                    [ngValue]="owner">{{ owner.firstName }} {{ owner.lastName }}
+            </option>
+          </select>
+          <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="owner.valid"
+                [class.glyphicon-remove]="!owner.valid" aria-hidden="true"></span>
+
+          <span class="help-block"
+                *ngIf="owner.dirty && owner.hasError('required')">Owner is required</span>
+
         </div>
       </div>
       <br/>

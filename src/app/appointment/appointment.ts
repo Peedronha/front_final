@@ -1,9 +1,9 @@
 import {Pet} from '../pets/pet';
 
-export interface Visit {
+export interface Appointment {
   id: number;
   date: string;
   description: string;
-  pet: Pet;
-  petId: number;
+  owner: number;
+  pet:number;
 }

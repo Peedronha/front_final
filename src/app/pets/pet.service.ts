@@ -14,7 +14,7 @@ export class PetService {
   private readonly handlerError: HandleError;
 
   constructor(private http: HttpClient, private httpErrorHandler: HttpErrorHandler) {
-    this.handlerError = httpErrorHandler.createHandleError('OwnerService');
+    this.handlerError = httpErrorHandler.createHandleError('ErrorService');
   }
 
   getPets(): Observable<Pet[]> {
@@ -32,9 +32,7 @@ export class PetService {
   }
 
   addPet(pet: Pet): Observable<Pet> {
-    const ownerId = pet.owner.id;
-    const ownersUrl = environment.REST_API_URL + `owners/${ownerId}/pets`;
-    return this.http.post<Pet>(ownersUrl, pet)
+    return this.http.post<Pet>(this.entityUrl, pet)
       .pipe(
         catchError(this.handlerError('addPet', pet))
       );

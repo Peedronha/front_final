@@ -42,7 +42,7 @@ export class PetEditComponent implements OnInit {
     this.petService.getPetById(petId).subscribe(
       pet => {
         this.pet = pet;
-        this.ownerService.getOwnerById(pet.ownerId).subscribe(
+        this.ownerService.getOwnerByPetId(this.pet.id).subscribe(
           response => {
             this.currentOwner = response;
           });

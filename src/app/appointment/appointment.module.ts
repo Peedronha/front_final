@@ -1,10 +1,10 @@
-import {VisitsRoutingModule} from './visits-routing.module';
+import {AppointementRoutingModule} from './appointement-routing.module';
 import {CommonModule} from '@angular/common';
-import {VisitListComponent} from './visit-list/visit-list.component';
-import {VisitEditComponent} from './visit-edit/visit-edit.component';
+import {VisitListComponent} from './appointment-list/visit-list.component';
+import {VisitEditComponent} from './appointment-edit/visit-edit.component';
 import {NgModule} from '@angular/core';
-import {VisitService} from './visit.service';
-import {VisitAddComponent} from './visit-add/visit-add.component';
+import {AppointmentService} from './appointment.service';
+import {VisitAddComponent} from './appointment-add/visit-add.component';
 import {FormsModule} from '@angular/forms';
 import {PetsRoutingModule} from '../pets/pets-routing.module';
 import {MatMomentDateModule, MomentDateAdapter} from '@angular/material-moment-adapter';
@@ -29,7 +29,7 @@ export const MY_DATE_FORMATS = {
     FormsModule,
     MatDatepickerModule,
     MatMomentDateModule,
-    VisitsRoutingModule,
+    AppointementRoutingModule,
     PetsRoutingModule
   ],
   declarations: [
@@ -43,10 +43,10 @@ export const MY_DATE_FORMATS = {
     VisitAddComponent
   ],
   providers: [
-    VisitService,
+    AppointmentService,
     {provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE]},
     {provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS}
   ]
 })
-export class VisitsModule {
+export class AppointmentModule {
 }
