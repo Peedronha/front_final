@@ -3,16 +3,23 @@ import {FormControl, FormGroup,Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {Autenticacao} from "./model/login.model";
 import {RegisterService} from "./service/register.service";
+import {UsuarioModel} from "./model/usuario.model";
+import {HttpHeaders} from "@angular/common/http";
 
 @Component({
   selector: 'app-register-user',
   templateUrl: './register-user.component.html',
   styleUrls: ['./register-user.component.css']
-}) class RegisterUserComponent implements OnInit {
+}) export class RegisterUserComponent implements OnInit {
 
-  hide:any;
-  email:any;
-  invalid:any;
+  register:boolean = false
+  showRegister($event){
+    this.register = !this.register;
+  }
+
+  email: string = '';
+  username: string = '';
+  senha: string = '';
 
   loginForm = new FormGroup({
     login: new FormControl('', Validators.required),
@@ -45,11 +52,24 @@ import {RegisterService} from "./service/register.service";
     }
   }
 
-  registro(){
+  registro() {
 
+    if (this.registerForm.valid) {
+
+      let usuario = new UsuarioModel();
+
+      usuario.email = this.registerForm.get('email')?.value;
+      usuario.username = this.registerForm.get('username')?.value;
+      usuario.senha = this.registerForm.get('password')?.value;
+
+
+      this.registerService.registro(usuario).subscribe(usuarioRetorno => {
+        console.log('workin on it');
+      }, err => {
+        console.log(err);
+      });
+    }
   }
-
-
 }
 
 export class RegisterUserModule {

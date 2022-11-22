@@ -6,6 +6,13 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {MatSelectModule} from "@angular/material/select";
 import {VetsRoutingModule} from "../vets/vets-routing.module";
 import {RegisterUserComponent} from "./register-component/register-user.component";
+import {MatIconModule} from "@angular/material/icon";
+import {MatCardModule} from "@angular/material/card";
+import {MatTabsModule} from "@angular/material/tabs";
+import {MatCheckboxModule} from "@angular/material/checkbox";
+import {MatToolbarModule} from "@angular/material/toolbar";
+import {MatDatepickerModule} from "@angular/material/datepicker";
+import {MatRadioModule} from "@angular/material/radio";
 
 
 @NgModule({
@@ -18,7 +25,14 @@ import {RegisterUserComponent} from "./register-component/register-user.componen
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
-    MatSelectModule
+    MatSelectModule,
+    MatIconModule,
+    MatCardModule,
+    MatTabsModule,
+    MatCheckboxModule,
+    MatToolbarModule,
+    MatDatepickerModule,
+    MatRadioModule
   ],
   exports:[
     RegisterUserComponent
