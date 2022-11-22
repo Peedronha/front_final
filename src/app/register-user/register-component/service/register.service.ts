@@ -32,6 +32,6 @@ export class RegisterService {
       })
     };
     return this.HttpClient.
-    post<UsuarioModel>("http://localhost:8082/usuario",usuarioModel, httpOptions);
+    post<UsuarioModel>("http://localhost:8080/api/user",usuarioModel, httpOptions);
   }
 }

@@ -13,11 +13,13 @@ import {MatCheckboxModule} from "@angular/material/checkbox";
 import {MatToolbarModule} from "@angular/material/toolbar";
 import {MatDatepickerModule} from "@angular/material/datepicker";
 import {MatRadioModule} from "@angular/material/radio";
-
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatInputModule} from "@angular/material/input";
+import {MatButton, MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
-    RegisterUserComponent
+    RegisterUserComponent,
   ],
   imports: [
     CommonModule,
@@ -32,7 +34,10 @@ import {MatRadioModule} from "@angular/material/radio";
     MatCheckboxModule,
     MatToolbarModule,
     MatDatepickerModule,
-    MatRadioModule
+    MatRadioModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   exports:[
     RegisterUserComponent

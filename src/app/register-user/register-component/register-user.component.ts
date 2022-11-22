@@ -17,31 +17,40 @@ import {HttpHeaders} from "@angular/common/http";
     this.register = !this.register;
   }
 
+  hide: any;
+
+
+
   email: string = '';
   username: string = '';
   senha: string = '';
 
-  loginForm = new FormGroup({
-    login: new FormControl('', Validators.required),
-    senha: new FormControl('',Validators.required)
-  })
-
-  registerForm = new FormGroup({
-    username: new FormControl('', Validators.required),
-    senha: new FormControl('', Validators.required),
-    email: new FormControl('', Validators.email)
-  })
+  loginForm: FormGroup;
+  registerForm: FormGroup;
 
   constructor(private registerService:RegisterService, private router:Router) { }
 
   ngOnInit() {
+
+    this.loginForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      senha: new FormControl('',Validators.required)
+    })
   }
+
+  /*
+  *    this.registerForm = new FormGroup({
+      username: new FormControl('', Validators.required),
+      senha: new FormControl('', Validators.required),
+      email: new FormControl('', Validators.email)
+    })
+  * */
 
   login(){
     if (this.loginForm.valid){
       let autenticacao = new Autenticacao();
       autenticacao.login = this.loginForm.get('login')?.value;
-      autenticacao.senha = this.loginForm.get('senha')?.value;
+      autenticacao.senha = this.loginForm.get('password')?.value;
 
       this.registerService.login(autenticacao).subscribe(
         response => {
@@ -54,22 +63,20 @@ import {HttpHeaders} from "@angular/common/http";
 
   registro() {
 
-    if (this.registerForm.valid) {
 
       let usuario = new UsuarioModel();
 
-      usuario.email = this.registerForm.get('email')?.value;
-      usuario.username = this.registerForm.get('username')?.value;
-      usuario.senha = this.registerForm.get('password')?.value;
-
-
+      usuario.username = this.username;
+      usuario.email = this.email;
+      usuario.senha = this.senha;
+      usuario.enabled = false;
+      usuario.roles = [];
       this.registerService.registro(usuario).subscribe(usuarioRetorno => {
         console.log('workin on it');
       }, err => {
         console.log(err);
       });
     }
-  }
 }
 
 export class RegisterUserModule {
