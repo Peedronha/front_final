@@ -1,14 +1,20 @@
 <table [hidden]="noVisits" class=" table table-condensed">
   <thead>
   <tr>
+    <th>Appointment id</th>
     <th>Appointment Date</th>
     <th>Description</th>
     <th>Actions</th>
+    <th>Appointment Pet</th>
+    <th>Appointment Owner</th>
   </tr>
   </thead>
   <tr *ngFor="let visit of visits">
+    <td>{{ visit.id }}</td>
     <td>{{ visit.date }}</td>
     <td>{{ visit.description }}</td>
+    <td>{{ visit.pet }}</td>
+    <td>{{ visit.owner }}</td>
     <td>
       <button class="btn btn-default" (click)="editVisit(visit)">Edit Appointment</button>
       <button class="btn btn-default" (click)="deleteVisit(visit)">Delete Appointment</button>

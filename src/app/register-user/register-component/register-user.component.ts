@@ -69,7 +69,6 @@ import {HttpHeaders} from "@angular/common/http";
       usuario.username = this.username;
       usuario.email = this.email;
       usuario.senha = this.senha;
-      usuario.enabled = false;
       usuario.roles = [];
       this.registerService.registro(usuario).subscribe(usuarioRetorno => {
         console.log('workin on it');

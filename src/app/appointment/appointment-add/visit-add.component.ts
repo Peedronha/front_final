@@ -10,6 +10,8 @@ import {Owner} from '../../owners/owner';
 import * as moment from 'moment';
 import {OwnerService} from '../../owners/owner.service';
 import {visit} from "@angular/compiler-cli/src/ngtsc/util/src/visitor";
+import {Vet} from "../../vets/vet";
+import {VetService} from "../../vets/vet.service";
 
 @Component({
   selector: 'app-visit-add',
@@ -25,7 +27,12 @@ export class VisitAddComponent implements OnInit {
   addedSuccess = false;
   errorMessage: string = '';
 
-  constructor(private visitService: AppointmentService,
+  Pets: Pet[];
+  Owners: Owner[];
+  Vets: Vet[];
+
+  constructor(private vetService: VetService,
+              private visitService: AppointmentService,
               private petService: PetService,
               private ownerService: OwnerService,
               private router: Router,
@@ -39,15 +46,20 @@ export class VisitAddComponent implements OnInit {
 
   ngOnInit() {
     const petId = this.route.snapshot.params['id'];
-    this.petService.getPetById(petId).subscribe(
+    this.petService.getPets().subscribe(
       pet => {
-        this.currentPet = pet;
-        this.currentPetType = this.currentPet.type;
-        this.ownerService.getOwnerById(this.visit.owner).subscribe(
+        this.Pets = pet;
+        this.ownerService.getOwners().subscribe(
           owner => {
-            this.currentOwner = owner;
+            this.Owners = owner;
           }
         )
+      },
+      error => this.errorMessage = error as any);
+
+    this.vetService.getVets().subscribe(
+      vet => {
+        this.Vets = vet;
       },
       error => this.errorMessage = error as any);
   }

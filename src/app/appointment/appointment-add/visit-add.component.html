@@ -49,6 +49,53 @@
           </div>
         </div>
 
+        <div class="form-group has-feedback " [class.has-success]="owner.dirty && owner.valid" [class.has-error]="owner.dirty && !owner.valid">
+          <label class="col-sm-2 control-label">Owner</label>
+          <div class="col-sm-10">
+            <select id="owner_name" name="owner_name" class="form-control" required [(ngModel)]="Owners" #owner="ngModel">
+              <option *ngFor="let owner of Owners"
+                      [ngValue]="owner">{{ owner.id}} {{ owner.firstName}} {{owner.lastName}}
+              </option>
+            </select>
+            <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="owner.valid"
+                  [class.glyphicon-remove]="!owner.valid" aria-hidden="true"></span>
+
+            <span class="help-block"
+                  *ngIf="owner.dirty && owner.hasError('required')">Owner is required</span>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback " [class.has-success]="pet.dirty && pet.valid" [class.has-error]="pet.dirty && !pet.valid">
+          <label class="col-sm-2 control-label">Pet</label>
+          <div class="col-sm-10">
+            <select id="pet_name" name="pet_name" class="form-control" required [(ngModel)]="Pets" #pet="ngModel">
+              <option *ngFor="let pet of Pets"
+                      [ngValue]="pet">{{ pet.id}} {{ pet.name}} {{pet.birthDate}}
+              </option>
+            </select>
+            <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="pet.valid"
+                  [class.glyphicon-remove]="!pet.valid" aria-hidden="true"></span>
+
+            <span class="help-block"
+                  *ngIf="pet.dirty && pet.hasError('required')">Pet is required</span>
+          </div>
+        </div>
+
+        <div class="form-group has-feedback " [class.has-success]="vet.dirty && vet.valid" [class.has-error]="vet.dirty && !vet.valid">
+          <label class="col-sm-2 control-label">Pet</label>
+          <div class="col-sm-10">
+            <select id="vet_name" name="vet_name" class="form-control" required [(ngModel)]="Vets" #vet="ngModel">
+              <option *ngFor="let vet of Vets"
+                      [ngValue]="vet">[{{vet.id}}] {{ vet.firstName}} {{vet.lastName}} {{vet.specialties}}
+              </option>
+            </select>
+            <span class="glyphicon form-control-feedback" [class.glyphicon-ok]="pet.valid"
+                  [class.glyphicon-remove]="!vet.valid" aria-hidden="true"></span>
+
+            <span class="help-block"
+                  *ngIf="vet.dirty && vet.hasError('required')">Vet is required</span>
+          </div>
+        </div>
       </div>
       <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
