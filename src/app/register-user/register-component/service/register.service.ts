@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Autenticacao} from "../model/login.model";
 import {UsuarioModel} from "../model/usuario.model";
+import {ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,7 @@ import {UsuarioModel} from "../model/usuario.model";
 export class RegisterService {
 
   constructor(private HttpClient: HttpClient) { }
+
 
   login(autenticacao: Autenticacao){
     const httpOptions = {
@@ -32,6 +34,6 @@ export class RegisterService {
       })
     };
     return this.HttpClient.
-    post<UsuarioModel>("http://localhost:8080/api/user",usuarioModel, httpOptions);
+    post<UsuarioModel>("http://localhost:8080/usuario",usuarioModel, httpOptions);
   }
 }
